@@ -1,8 +1,11 @@
 import React from 'react'
+import NodeGraph from '../Pages/graph'
 
 const Clouds = () => {
   return (
-    <div>clouds</div>
+    <div>
+      <NodeGraph/>
+    </div>
   )
 }
 
