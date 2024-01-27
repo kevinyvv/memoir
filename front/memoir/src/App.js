@@ -8,7 +8,6 @@ import { NavLink, Routes, Route } from 'react-router-dom';
 function App() {
   return (
     <div className="">
-      <Navigation/>
       <Routes>
         <Route path='/' element = {<Main/>}/>
         <Route path='/home' element = {<Dashboard/>}/>
