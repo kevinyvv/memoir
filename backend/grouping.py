@@ -42,7 +42,7 @@ for i in range(len(embeddings)):
 
 import matplotlib.pyplot as plt
 
-# # Plot histogram
+'''# # Plot histogram
 # plt.hist(distances, bins=30, alpha=0.7)
 # plt.axvline(mean_dist, color='red', linestyle='dashed', linewidth=2, label='Mean')
 # plt.axvline(median_dist, color='green', linestyle='dashed', linewidth=2, label='Median')
@@ -80,23 +80,71 @@ import matplotlib.pyplot as plt
 
 # print(groups)
 
-# idea two: Use like kruskal's algo and stop at arbitrary cutoff
-from sklearn.cluster import OPTICS
-from sklearn.cluster import MeanShift
+# idea two: Use like kruskal's algo and stop at arbitrary cutoff'''
+
 from sklearn.cluster import Birch
 db = Birch(n_clusters=int(math.sqrt(len(embeddings)))).fit(embeddings)
 labels = db.labels_
-print(labels)
-# from sklearn.cluster import SpectralClustering
-# clustering = SpectralClustering(n_clusters=5,
-# assign_labels='discretize',
-# random_state=0).fit(embeddings)
-# labels = clustering.labels_
-
-print(labels)
 for i in range(max(labels)+1):
     print("Group", i)
     for j in range(len(labels)):
         if labels[j] == i:
             print(posts[j])
     print()
+
+
+import networkx as nx
+#take all relations between groups and softmax from each leaving node
+print(labels)
+groups = {}
+for i in range(max(labels)+1):
+    groups[i] = {"n": 0, "messages": [], "sum": 0}
+    for j in range(len(labels)):
+        if labels[j] == i:
+            groups[i]["n"] += 1
+            groups[i]["messages"].append(posts[j])
+            groups[i]["sum"] += np.array(embeddings[j])
+
+print(groups)
+for key in groups.keys():
+    groups[key]["average"] = groups[key]["sum"] / groups[key]["n"]
+
+print(groups)
+group_connections = [[0 for i in range(len(groups.keys()))] for j in range(len(groups.keys()))]
+
+for i in range(len(groups.keys())):
+    for j in range(len(groups.keys())):
+        group_connections[i][j] = distance(groups[i]["average"], groups[j]["average"])
+
+print(group_connections)
+# find mean, take greater than mean 
+for i in range(len(group_connections)):
+    mean = sum(group_connections[i])/(len(group_connections[i])-1)
+    for j in range(len(group_connections)):
+        if group_connections[i][j] > mean:
+            group_connections[i][j] = 1
+        else:
+            group_connections[i][j] = 0
+
+print(group_connections)
+
+graph = {"nodes": [], "links":[]}
+for i in range(len(groups.keys())):
+    graph["nodes"].append({"id":i, "name": groups[i]["messages"], "group": i, })
+for i in range(len(group_connections)):
+    for j in range(len(group_connections)):
+        if group_connections[i][j] == 1:
+            graph["links"].append({"source":i, "target": j, "value": float(distance(groups[i]["average"], groups[j]["average"]))})
+
+for i in range(len(posts)):
+    graph["nodes"].append({"id": "m"+str(i), "group": int(labels[i])})
+    graph["links"].append({"source": "m"+str(i), "target": int(labels[i]), "value": float(distance(embeddings[i], groups[labels[i]]["average"]))})
+
+
+print(graph)
+
+
+import json
+
+with open("sample.json", "w") as outfile: 
+    json.dump(graph, outfile)
