@@ -9,6 +9,12 @@ module.exports = {
       animation: {
         blob: "blob 10s infinite"
       },
+      transitionDuration: {
+        '1500': '1500ms',
+        '2000': '2000ms',
+        '3000': '3000ms',
+        '4000': '4000ms',
+      },
       keyframes: {
         blob: {
           "0%": {
@@ -35,7 +41,11 @@ module.exports = {
     fontFamily: {
       'title': ["MuseoModerno", 'sans-serif'],
       'slogan': ["Mr Dafoe"],
+      'cursive': ["Dancing Script", 'cursive'],
     },
   },
-  plugins: [require("daisyui")],
+	plugins: [
+		require("tailwindcss-animate"),
+    require("daisyui"),
+	],
 }

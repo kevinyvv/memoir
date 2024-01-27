@@ -19,7 +19,7 @@ const PostModal = ({setShowModal}) => {
         const response = await axios.post(`http://localhost:8000/create/post}`, {
             content: content,
         })
-        console.log(response.data)
+        console.log(response)
         //const success = response.status == 201
 
         window.location.reload()

@@ -167,50 +167,53 @@ function ForceGraph({
 
 
 const NodeGraph = () => {
-const ref = useRef();
-const [data, setData] = useState([]);
+  const ref = useRef();
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true); // Add a loading state
 
-const fetchData = async () => {
-  try {
-    console.log("hi");
-    const response = await fetch('http://127.0.0.1:5001/update-graph');
-    const res = await response.json();
-    console.log(res);
-    setData(res);
-  } catch (error) {
-    console.log("HELLO");
-    console.error('Error fetching data:', error);
+  const fetchData = async () => {
+    try {
+      console.log("Fetching data...");
+      const response = await fetch('http://127.0.0.1:5001/update-graph');
+      const res = await response.json();
+      setData(res);
+      setLoading(false); // Set loading to false after data is fetched
+    } catch (error) {
+      console.error('Error fetching data:', error); // Ensure loading is set to false even if there is an error
+    }
+  };
+
+  useEffect(() => {
+    fetchData(); // Fetch data when the component mounts
+
+    return () => {
+      d3.select(ref.current).selectAll("*").remove();
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!loading) {
+      const svg = ForceGraph(data, {
+        nodeId: d => d.id,
+        nodeGroup: d => d.group,
+        nodeTitle: d => `${d.id}:\n${d.m}`,
+        linkStrokeWidth: l => Math.sqrt(l.value),
+        width: 1900,
+        height: 800,
+      });
+      d3.select(ref.current).append(() => svg);
+    }
+  }, [loading, data]); // Run this effect when loading changes
+
+  if (loading) {
+    return <div>Loading...</div>; // Display a loading indicator
   }
-};
-
-useEffect(() => {
-  const initializeGraph = async () => {
-    await fetchData()
-    const svg = ForceGraph(data, {
-      nodeId: d => d.id,
-      nodeGroup: d => d.group,
-      nodeTitle: d => `${d.id}:\n${d.m}`,
-      linkStrokeWidth: l => Math.sqrt(l.value),
-      width: 1900,
-      height: 800,
-    });
-
-    d3.select(ref.current).append(() => svg);
-    console.log(data);
-  };
-
-  initializeGraph(); 
-
-  return () => {
-    d3.select(ref.current).selectAll("*").remove();
-  };
-}, []);
 
   return (
     <div>
-    <div ref={ref}></div> 
+      <div ref={ref}></div> 
     </div>
   );
-}
+};
 
 export default NodeGraph
