@@ -3,7 +3,7 @@ import NodeGraph from '../Pages/graph'
 
 const Clouds = () => {
   return (
-    <div>
+    <div className='flex items-center'>
       <NodeGraph/>
     </div>
   )
