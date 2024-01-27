@@ -17,7 +17,7 @@ const Main = () => {
 
         <p className='my-4 text-white font-slogan text-3xl tracking-widest'> Memories Live Here </p>
 
-        <button className="my-8 btn glass rounded-full px-10 bg-gradient-to-r from-yellow-200 to-purple-300 text-[#8975FF] py-1 text-white"
+        <button className="mb-8 mt-5 btn glass rounded-full px-10 text-[#8975FF] py-1 [&:not(:hover)]:bg-gradient-to-r from-yellow-200 to-purple-300"
         onClick={()=>loginWithRedirect()}> SIGN UP </button>
       </div>
 
