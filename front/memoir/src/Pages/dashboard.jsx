@@ -9,7 +9,7 @@ const Dashboard = () => {
   const [clouds, setClouds] = useState(false)
 
   return (
-    <div className='h-screen w-screen'>
+    <div className='h-screen w-screen bg-cover'>
       <div className='flex space-x-8 justify-center mt-4'>
         <button onClick={()=>setClouds(false)}> Friends </button>
         <button onClick={()=>setClouds(true)}> Clouds </button>
