@@ -1,9 +1,16 @@
 import React from 'react'
+import { useAuth0 } from '@auth0/auth0-react';
+import LogoutButton from '../Components/LogoutButton';
 
-const dashboard = () => {
+
+const Dashboard = () => {
+
+
   return (
-    <div>dashboard</div>
+    <div>
+      <LogoutButton/>
+    </div>
   )
 }
 
-export default dashboard
+export default Dashboard
