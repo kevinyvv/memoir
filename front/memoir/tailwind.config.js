@@ -5,7 +5,11 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        'nostalgia': "url('https://imgur.com/sF0Zszn.jpeg')",
+      }
+    },
   },
   plugins: [require("daisyui")],
 }
