@@ -11,7 +11,7 @@ module.exports = {
       }
     },
     fontFamily: {
-      'title': ["Bauhaus", 'sans-serif'],
+      'title': ["MuseoModerno", 'sans-serif'],
       'slogan': ["Mr Dafoe"],
     },
   },
