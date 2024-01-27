@@ -1,5 +1,4 @@
-import React, { useRef, useEffect } from 'react';
-import data from './sample.json'
+import React, { useRef, useEffect, useState } from 'react';
 import * as d3 from "d3"
 
 function ForceGraph({
@@ -14,7 +13,7 @@ function ForceGraph({
   nodeStroke = "#fff", // node stroke color
   nodeStrokeWidth = 1.5, // node stroke width, in pixels
   nodeStrokeOpacity = 1, // node stroke opacity
-  nodeRadius = 5, // node radius, in pixels
+  nodeRadius = 15, // node radius, in pixels
   nodeStrength,
   linkSource = ({source}) => source, // given d in links, returns a node identifier string
   linkTarget = ({target}) => target, // given d in links, returns a node identifier string
@@ -54,7 +53,6 @@ function ForceGraph({
   const forceLink = d3.forceLink(links).id(({index: i}) => N[i]);
   if (nodeStrength !== undefined) forceNode.strength(nodeStrength);
   if (linkStrength !== undefined) forceLink.strength(linkStrength);
-
   const simulation = d3.forceSimulation(nodes)
       .force("link", forceLink)
       .force("charge", forceNode)
@@ -111,26 +109,31 @@ function ForceGraph({
       .attr("cy", d => d.y);
   }
 
-  function click() {
+  function click(d) {
     //open link when button is clicked
-    
+    console.log(`${d}`);
     window.open("", "_blank")
   }
 
   function hover(){
     // make bubble bigger when hoevered and show a preview?
+    //setTooltipContent(`<strong>ID:</strong> ${d.id}<br><strong>Info:</strong> ${d.info}`);
+
+    //setTooltipVisible(true);
 
     d3.select(this).transition()
      .duration(500)
-     .attr("r", 30);
+     .attr("r", 50);
   }
 
   function unhover(){
     // make bubble back to small
+    //setTooltipVisible(false);
+
     d3.select(this)
     .transition()
     .duration(200)
-    .attr('r', 5);
+    .attr('r', nodeRadius);
   }
 
 
@@ -164,32 +167,49 @@ function ForceGraph({
 
 
 const NodeGraph = () => {
-  const ref = useRef();
+const ref = useRef();
+const [data, setData] = useState([]);
 
-  useEffect(() => {
-    // Assume ForceGraph is already defined the same way as your provided code
-    // Assume you have `nodes` and `links` data available for the graph
+const fetchData = async () => {
+  try {
+    console.log("hi");
+    const response = await fetch('http://127.0.0.1:5001/update-graph');
+    const res = await response.json();
+    console.log(res);
+    setData(res);
+  } catch (error) {
+    console.log("HELLO");
+    console.error('Error fetching data:', error);
+  }
+};
 
+useEffect(() => {
+  const initializeGraph = async () => {
+    await fetchData()
     const svg = ForceGraph(data, {
       nodeId: d => d.id,
       nodeGroup: d => d.group,
-      nodeTitle: d => `${d.id}\n${d.group}`,
+      nodeTitle: d => `${d.id}:\n${d.m}`,
       linkStrokeWidth: l => Math.sqrt(l.value),
-      width: 1000,
-      height: 600,
-    })
+      width: 1900,
+      height: 800,
+    });
 
-    // Append the SVG to the container div
     d3.select(ref.current).append(() => svg);
+    console.log(data);
+  };
 
-    // Optional: Clean up when the component is unmounted
-    return () => {
-      d3.select(ref.current).selectAll("*").remove();
-    };
-  }, []); // Empty dependency array means this effect runs once on mount
+  initializeGraph(); 
+
+  return () => {
+    d3.select(ref.current).selectAll("*").remove();
+  };
+}, []);
 
   return (
-    <div ref={ref}></div> // Attach the ref to the container
+    <div>
+    <div ref={ref}></div> 
+    </div>
   );
 }
 
