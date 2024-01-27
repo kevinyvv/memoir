@@ -10,13 +10,12 @@ const Dashboard = () => {
   const [clouds, setClouds] = useState(false)
 
   return (
-    <div className='h-screen w-screen bg-cover bg-[#E8E4FF]'>
-      <div className='flex space-x-8 mt-4 bg-nostalgia flex-row content-center'>
-        <h1 className='font-bold text-4xl mb-4 text-white font-title'>memoir </h1>
+    <div className='h-screen w-screen bg-cover'>
+      <div className='flex space-x-8 justify-center mt-4'>
         <button onClick={()=>setClouds(false)}> Friends </button>
         <button onClick={()=>setClouds(true)}> Clouds </button>
       </div>
-      <NavLink to="/profile" className="absolute size-12 bg-stone-300 rounded-full top-4 right-5"></NavLink> 
+      <NavLink to="/profile" className="absolute top-4 right-5"> My Profile (img later) </NavLink> 
       {clouds ? <Clouds/> : <Friends/>}
     </div>
   )
