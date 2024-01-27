@@ -18,7 +18,7 @@ root.render(
       domain={domain}
       clientId={clientId}
       authorizationParams={{
-        redirect_uri: "http://localhost:3000/dashboard"
+        redirect_uri: "http://localhost:3000/home"
       }}>
         <App />
       </Auth0Provider>
