@@ -6,7 +6,7 @@ const Friends = () => {
 
   return (
     <div className='h-full w-full flex flex-col items-center my-8'>
-        <h1 className='text-3xl font-bold text-white'> MEMOIRS </h1>
+        <h1 className='text-3xl font-title text-[#9F91CC]'> MEMOIRS </h1>
         <div className='space-y-8 mt-8'>
             <PostContainer/>
           <div className='grid grid-cols-8 outline outline-2 w-[36rem] h-64 rounded-lg'>
