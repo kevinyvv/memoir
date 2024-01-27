@@ -10,6 +10,10 @@ module.exports = {
         'nostalgia': "url('https://imgur.com/sF0Zszn.jpeg')",
       }
     },
+    fontFamily: {
+      'title': ["Bauhaus", 'sans-serif'],
+      'slogan': ["Mr Dafoe"],
+    },
   },
   plugins: [require("daisyui")],
 }

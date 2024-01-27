@@ -7,6 +7,8 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
+"mongodb+srv://kevin31422005:31422005@cluster0.x8tyvu2.mongodb.net/?retryWrites=true&w=majority"
+
 @app.route("/",methods=["POST","GET"])
 def obtain_graph():
     return jsonify("graph")
