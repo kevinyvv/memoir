@@ -41,7 +41,7 @@ def get_posts():
 
 @app.route('/create/post', methods=['POST'])
 def create_post():
-    data = request.json
+    data = request.get_json()
     posts_collection.insert_one(data)
     return jsonify("Post created successfully")
 
