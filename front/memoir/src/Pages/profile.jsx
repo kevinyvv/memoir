@@ -1,30 +1,55 @@
-import React from 'react'
+import React, { useState } from 'react'
 import LogoutButton from '../Components/LogoutButton';
 import PostContainer from '../Components/PostContainer';
+import { NavLink } from 'react-router-dom';
+import Myposts from '../Components/myposts';
+import Mycloud from '../Components/mycloud';
 
 const Profile = () => {
+
+  const [cloud, setCloud] = useState('My Posts')
+  const [bio, setBio] = useState('Rediscovering my inner child!')
+
+  const handleChange=(e)=>{
+    setCloud(e.target.value)
+}
+
   return (
-    <div className='w-full h-screen bg-black'> 
-      <div className='h-1/3 bg-white mb-7'>
-        
-        <LogoutButton/>
+    <div className='w-full h-screen bg-white'> 
+      <div className='flex flex-row gap-10 h-2/5 bg-nostalgia bg-cover mb-7'>
+        <NavLink to="/home" className='mt-5 ml-5 btn rounded-full glass bg-[#E8E4FF] px-8 text-[#8975FF]'> BACK </NavLink>
+        <div className='flex flex-col gap-5'>
+          <NavLink to="/profile"> <img className="mt-5 size-48 rounded-full right-4 hover:scale-105" src="https://imgur.com/UxmKBRD.jpg"/></NavLink>
+          <LogoutButton/>
+        </div>
+        <div>
+          <h1 className='text-white font-bio font-bold mt-10 text-xl'>Kevin Wu</h1>
+          <h1 className='text-gray-200 font-bio font-bold text-md'>@kevin</h1>
+          <p className='mt-5 text-white font-bio'>
+            {bio}
+          </p>
+        </div>
+        <NavLink to="/profile"> <img className="absolute mt-5 size-12 rounded-full right-4 hover:scale-105" src="https://imgur.com/h74AiV3.jpg"/></NavLink> 
       </div>
-      <div className='h-full bg-slate-600'>
-        <div className='flex flex-col items-center space-y-8'>
-          <PostContainer/>
-          <div className='grid grid-cols-8 outline outline-2 w-[36rem] h-64 rounded-lg'>
-            <img className='col-span-1 rounded-full mx-4 my-2' 
-            src="https://ih1.redbubble.net/image.4785986194.3997/aps,504x498,medium,transparent-pad,600x600,f8f8f8.jpg"/>
-            <div className='col-span-5 mt-4 mx-4'>
-              <h1 className='font-bold my-2 mx-2 '> brought up by @kevin 3 hrs ago.</h1>
-            <div className='mt-4 mx-2 border border-1 rounded-lg py-2 px-2'>
-              <p> Nap time in kindergarten was the real MVP. Who else misses those cozy mats and soft blankets? </p>
-            </div>
-          </div>
-          <img className='col-span-3'/>
-         </div>
-          <hr className='w-full my-4' />
-          No more posted memories!
+      <div className='h-full bg-white grid justify-between align-center grid-cols-5 w-full'>
+        
+      <div className='col-span-1 mx-4 w-1/2'>
+      <select value={cloud} onChange={(e)=>handleChange(e)} class="select w-full max-w-xs bg-slate-300">
+        <option disabled selected>Display</option>
+        <option> My Posts</option>
+        <option> My Cloud</option>
+      </select>
+      </div>
+
+        <div className='col-span-3 text-center'>
+        {
+          cloud == 'My Cloud' ? <Mycloud/> : <Myposts/>
+        }
+        </div>
+
+        <div className='col-span-1 text-center'>
+          <h1 className='text-xl font-bold'> Friends </h1>
+          <p className='text-wrap mx-4 mt-4'> You currently have no friends. Go and make some!</p>
         </div>
       </div>
     </div>

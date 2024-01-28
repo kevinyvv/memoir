@@ -23,14 +23,48 @@ const Dashboard = () => {
   return (
     <div className=' h-screen w-screen bg-cover bg-slate-100 overflow-y-hidden'>
       <div className=' flex space-x-8 flex-row content-center bg-gradient-to-r from-pink-300 to-purple-400'>
-        <button onClick={()=>setClouds(false)}> <h1 className='animate-in animate-bounce duration-3000 mt-3 ml-5 font-bold text-4xl mb-4 text-white font-title'> memoir </h1> </button>
-        <button onClick={()=>setClouds(true)} className='animate-in fade-in slide-in-from-left duration-2000 hover:scale-105 mb-[2px]'><img className="h-8 w-12" src="https://imgur.com/XwTW8k4.jpeg" alt="Cloud Icon" /></button>
-        <NavLink to="/profile"> <img  className="animate-in fade-in slide-in-from-left duration-1500 absolute mt-3 size-12 rounded-full right-4 hover:scale-105" src="https://ih1.redbubble.net/image.4785986194.3997/aps,504x498,medium,transparent-pad,600x600,f8f8f8.jpg"/></NavLink> 
+        <button onClick={()=>setClouds(false)}> <h1 className='mt-3 ml-5 font-bold text-4xl mb-4 text-white font-title'> memoir </h1> </button>
+        <button onClick={()=>setClouds(true)} className='hover:scale-105 mb-[2px]'><img className="h-8 w-12" src="https://imgur.com/XwTW8k4.jpeg" alt="Cloud Icon" /></button>
+        <NavLink to="/profile"> <img  className="absolute mt-[10px] size-12 rounded-full right-4 hover:scale-105" src="https://imgur.com/UxmKBRD.jpg"/></NavLink> 
       </div>
         
-        {clouds ? <Clouds/> : <Friends />}
 
-      <button className='absolute bottom-24 right-36 btn btn-square btn-outline border border-white scale-150 bg-[#5C4B99]'
+        <div className='w-screen grid-cols-5 grid'>
+          <div className='col-span-1 flex flex-col text-center'> 
+            <h1 className='mt-10 font-bold font-bio text-xl text-[#9F91CC]'>Trending</h1>
+            <div className="flex flex-col content-evenly">
+              <div className="flex-row flex justify-center">
+                <h1 className='mt-5 text-white font-bio rounded-full w-36 bg-[#ccc5fc]'>Playing Outside</h1>
+              </div>
+              <div className="flex-row flex justify-center">
+                <h1 className='mt-5 text-white font-bio rounded-full w-36 bg-[#ccc5fc]'>2010's Pop</h1>
+              </div>
+              <div className="flex-row flex justify-center">
+                <h1 className='mt-5 text-white font-bio rounded-full w-36 bg-[#ccc5fc]'>Simpler Times</h1>
+              </div>
+              <div className="flex-row flex justify-center">
+                <h1 className='mt-5 text-white font-bio rounded-full w-36 bg-[#ccc5fc]'>Learning to...</h1>
+              </div>
+              <div className="flex-row flex justify-center">
+                <h1 className='mt-5 text-white font-bio rounded-full w-36 bg-[#ccc5fc]'>Bug Hunting</h1>
+              </div>
+              <div className="flex-row flex justify-center">
+                <h1 className='mt-5 text-white font-bio rounded-full w-36 bg-[#ccc5fc]'>OG Fortnite</h1>
+              </div>
+            </div>
+          </div>
+
+          <div className='col-span-3'>
+            {clouds ? <Clouds /> : <Friends />}
+          </div>
+
+          <div className='col-span-1 flex flex-col text-center'> 
+            <h1 className='mt-10 font-bold font-bio text-xl text-[#9F91CC]'>Online</h1>
+            <p className='text-wrap mx-4 mt-4 font-bio'> It's quiet right now... </p>
+          </div>
+        </div>
+
+      <button className='absolute h-4 bottom-10 right-10 btn btn-square btn-outline border border-white bg-[#5C4B99]'
       onClick={()=>setShowModal(true)}>
         +
       </button>
