@@ -5,6 +5,7 @@ from pymongo import MongoClient
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 import os
+import certifi
 from grouping import group 
 from dotenv import load_dotenv
 load_dotenv()
@@ -13,7 +14,7 @@ MONGO_DB=os.environ.get('MONGO_DB')
 app = Flask(__name__)
 CORS(app, support_credentials=True)
 
-client = MongoClient(MONGO_DB)
+client = MongoClient(MONGO_DB, ssl=True, tlsCAFile=certifi.where())
 db = client['memoir']
 posts_collection = db['memoir_posts']
 users_collection = db['memoir_users']

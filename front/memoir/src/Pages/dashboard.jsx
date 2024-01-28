@@ -25,7 +25,8 @@ const Dashboard = () => {
       <div className=' flex space-x-8 flex-row content-center bg-gradient-to-r from-pink-300 to-purple-400'>
         <button onClick={()=>setClouds(false)}> <h1 className='mt-3 ml-5 font-bold text-4xl mb-4 text-white font-title'> memoir </h1> </button>
         <button onClick={()=>setClouds(true)} className='hover:scale-105 mb-[2px]'><img className="h-8 w-12" src="https://imgur.com/XwTW8k4.jpeg" alt="Cloud Icon" /></button>
-        <NavLink to="/profile"> <img  className="ml-[75svw] mt-[10px] size-12 rounded-full right-4 hover:scale-105" src="https://imgur.com/UxmKBRD.jpg"/></NavLink> 
+        
+        <NavLink to="/profile"> <img className="absolute mt-[10px] size-12 rounded-full right-4 hover:scale-105" src="https://imgur.com/AnGiADE.jpg"/></NavLink> 
       </div>
         <div className='w-screen grid-cols-5 grid'>
           <div className='col-span-1 flex flex-col text-center'> 

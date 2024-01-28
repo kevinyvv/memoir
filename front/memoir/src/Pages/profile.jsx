@@ -19,7 +19,7 @@ const Profile = () => {
       <div className='flex flex-row gap-10 h-2/5 bg-nostalgia bg-cover mb-7'>
         <NavLink to="/home" className='mt-5 ml-5 btn rounded-full glass bg-[#E8E4FF] px-8 text-[#8975FF]'> BACK </NavLink>
         <div className='flex flex-col gap-5'>
-          <NavLink to="/profile"> <img className="mt-5 size-48 rounded-full right-4 hover:scale-105" src="https://imgur.com/UxmKBRD.jpg"/></NavLink>
+          <NavLink to="/profile"> <img className="mt-5 size-48 rounded-full right-4 hover:scale-105" src="https://imgur.com/AnGiADE.jpg"/></NavLink>
           <LogoutButton/>
         </div>
         <div>
@@ -29,7 +29,7 @@ const Profile = () => {
             {bio}
           </p>
         </div>
-        <NavLink to="/profile"> <img className="absolute mt-5 size-12 rounded-full right-4 hover:scale-105" src="https://imgur.com/h74AiV3.jpg"/></NavLink> 
+        <NavLink to="/profile"> <img className="absolute mt-5 size-12 rounded-full right-4 hover:scale-105" src="https://imgur.com/AnGiADE.jpg"/></NavLink> 
       </div>
       <div className='h-full bg-white grid justify-between align-center grid-cols-5 w-full'>
         
