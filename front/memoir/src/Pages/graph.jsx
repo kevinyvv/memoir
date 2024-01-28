@@ -23,8 +23,8 @@ function ForceGraph({
   linkStrokeLinecap = "round", // link stroke linecap
   linkStrength,
   colors = d3.schemeTableau10, // an array of color strings, for the node groups
-  width = 640, // outer width, in pixels
-  height = 400, // outer height, in pixels
+  width = 1280, // outer width, in pixels
+  height = 1200, // outer height, in pixels
   invalidation // when this promise resolves, stop the simulation
 } = {}) {
   // Compute values.
@@ -123,7 +123,7 @@ function ForceGraph({
 
     d3.select(this).transition()
      .duration(500)
-     .attr("r", 50);
+     .attr("r", 30);
   }
 
   function unhover(){
@@ -187,7 +187,7 @@ const NodeGraph = () => {
     fetchData(); // Fetch data when the component mounts
 
     return () => {
-      d3.select(ref.current).selectAll("*").remove();
+      d3.select(ref.current).select('svg').remove();
     };
   }, []);
 
@@ -199,20 +199,19 @@ const NodeGraph = () => {
         nodeTitle: d => `${d.user}:\n${d.m}`,
         linkStrokeWidth: l => Math.sqrt(l.value),
         width: 1900,
-        height: 800,
+        height: 1200,
       });
-      d3.select(ref.current).append(() => svg);
+      d3.select(ref.current).node().appendChild(svg);
     }
-  }, [loading, data]); // Run this effect when loading changes
+  }, [loading]); // Run this effect when loading changes
 
   if (loading) {
     return <div>Loading...</div>; // Display a loading indicator
   }
 
   return (
-    <div>
-      <div ref={ref}></div> 
-    </div>
+      <div ref={ref}>
+      </div> 
   );
 };
 

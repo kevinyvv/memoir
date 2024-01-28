@@ -60,8 +60,10 @@ def update_graph():
     for element in data_list:
         user_list.append(element['user'])
         content_list.append(element['content'])
+    print(content_list, user_list)
     
     groupings = group(content_list + user_list)
+    
     return jsonify(groupings)
     
 

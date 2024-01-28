@@ -23,7 +23,7 @@ def cosine_similarity(v1,v2):
 
 def group(posts):
 
-    posts = []
+    #posts = []
     
     content = posts[:int(len(posts)/2)]
     users = posts[int(len(posts)/2):]
@@ -67,6 +67,15 @@ def group(posts):
         for j in range(len(groups.keys())):
             group_connections[i][j] = distance(groups[i]["average"], groups[j]["average"])
 
+    for i in range(len(group_connections)):
+        mean = sum(group_connections[i])/(len(group_connections[i])-1)
+        for j in range(len(group_connections)):
+            if group_connections[i][j] > mean:
+                group_connections[i][j] = 1
+            else:
+                group_connections[i][j] = 0
+                
+
 
     graph = {"nodes": [], "links":[]}
     for i in range(len(groups.keys())):
@@ -74,11 +83,11 @@ def group(posts):
     for i in range(len(group_connections)):
         for j in range(len(group_connections)):
             if group_connections[i][j] == 1:
-                graph["links"].append({"source":i, "target": j, "value": float(distance(groups[i]["average"], groups[j]["average"]))})
+                graph["links"].append({"source":i, "target": j, "value": 0.10*float(distance(groups[i]["average"], groups[j]["average"]))})
 
     for i in range(len(content)):
         graph["nodes"].append({"id": "m"+str(i), "group": int(labels[i]), "m": content[i], "user":users[i]})
-        graph["links"].append({"source": "m"+str(i), "target": int(labels[i]), "value": float(distance(embeddings[i], groups[labels[i]]["average"]))})
+        graph["links"].append({"source": "m"+str(i), "target": int(labels[i]), "value": 0.10*float(distance(embeddings[i], groups[labels[i]]["average"]))})
 
     return graph
 
