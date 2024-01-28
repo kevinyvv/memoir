@@ -10,11 +10,15 @@ const PostContainer = () => {
         <div className='col-span-5 mt-4 mx-4'>
             <h1 className='font-bold my-2 mx-2 '> brought up by @kevin 2 hrs ago.</h1>
             <div className='mt-4 mx-2 border border-1 rounded-lg py-2 px-2 text-md'>
-              <p> Lacing up light-up sneakers for a night game of hide and seek. Let's bring back that glow-in-the-dark fun! </p>
+              <p> Pokémon card trades were the legit business deals of our childhood. Which one was your favorite?  </p>
             </div>
-            
-            <div>
-            <p className='mt-4 text-sm'> Tags </p>
+
+            <div className='flex space-x-2 mt-4'>
+              <p className='text-sm'> Tags </p>
+              <p className='bg-[#ccc5fc] text-sm rounded-full text-white pt-[1px] px-2 w-min h-6'> Pokemon </p>
+              <p className='bg-[#ccc5fc] text-sm rounded-full text-white pt-[1px] px-2 w-32 h-6'> Cards </p>
+              <p className='bg-[#ccc5fc] text-sm rounded-full text-white pt-[1px] px-2 w-min h-6'> Trading </p>
+              <p className='bg-[#ccc5fc] text-sm rounded-full text-white pt-[1px] px-2 w-min h-6'> Collecting </p>
             </div>
         </div>
         <img className='col-span-3'/>

@@ -27,29 +27,27 @@ const Dashboard = () => {
         <button onClick={()=>setClouds(true)} className='hover:scale-105 mb-[2px]'><img className="h-8 w-12" src="https://imgur.com/XwTW8k4.jpeg" alt="Cloud Icon" /></button>
         <NavLink to="/profile"> <img  className="absolute mt-[10px] size-12 rounded-full right-4 hover:scale-105" src="https://imgur.com/UxmKBRD.jpg"/></NavLink> 
       </div>
-        
-
         <div className='w-screen grid-cols-5 grid'>
           <div className='col-span-1 flex flex-col text-center'> 
-            <h1 className='mt-10 font-bold font-bio text-xl text-[#9F91CC]'>Trending</h1>
+            <h1 className='animate-in fade-in slide-in-from-bottom duration-1000 mt-10 font-bold font-bio text-xl text-[#9F91CC]'>Trending</h1>
             <div className="flex flex-col content-evenly">
-              <div className="flex-row flex justify-center">
-                <h1 className='mt-5 text-white font-bio rounded-full w-36 bg-[#ccc5fc]'>Playing Outside</h1>
+              <div className="animate-in fade-in slide-in-from-bottom duration-1300 flex-row flex justify-center">
+                <h1 className='pt-[2px] mt-5 text-white font-bio rounded-full w-36 bg-[#ccc5fc]'>2010's Pop</h1>
               </div>
-              <div className="flex-row flex justify-center">
-                <h1 className='mt-5 text-white font-bio rounded-full w-36 bg-[#ccc5fc]'>2010's Pop</h1>
-              </div>
-              <div className="flex-row flex justify-center">
+              <div className="animate-in fade-in slide-in-from-bottom duration-1600 flex-row flex justify-center">
                 <h1 className='mt-5 text-white font-bio rounded-full w-36 bg-[#ccc5fc]'>Simpler Times</h1>
               </div>
-              <div className="flex-row flex justify-center">
+              <div className="animate-in fade-in slide-in-from-bottom duration-1900 flex-row flex justify-center">
                 <h1 className='mt-5 text-white font-bio rounded-full w-36 bg-[#ccc5fc]'>Learning to...</h1>
               </div>
-              <div className="flex-row flex justify-center">
+              <div className="animate-in fade-in slide-in-from-bottom duration-2200 flex-row flex justify-center">
                 <h1 className='mt-5 text-white font-bio rounded-full w-36 bg-[#ccc5fc]'>Bug Hunting</h1>
               </div>
-              <div className="flex-row flex justify-center">
+              <div className="animate-in fade-in slide-in-from-bottom duration-2500 flex-row flex justify-center">
                 <h1 className='mt-5 text-white font-bio rounded-full w-36 bg-[#ccc5fc]'>OG Fortnite</h1>
+              </div>
+              <div className="flex-row flex justify-center">
+                <h1 className='animate-in fade-in slide-in-from-bottom duration-2800 mt-5 text-white font-bio rounded-full w-36 bg-[#ccc5fc]'>Playing Outside</h1>
               </div>
             </div>
           </div>
@@ -59,8 +57,8 @@ const Dashboard = () => {
           </div>
 
           <div className='col-span-1 flex flex-col text-center'> 
-            <h1 className='mt-10 font-bold font-bio text-xl text-[#9F91CC]'>Online</h1>
-            <p className='text-wrap mx-4 mt-4 font-bio'> It's quiet right now... </p>
+            <h1 className='animate-in fade-in slide-in-from-bottom duration-1000 mt-10 font-bold font-bio text-xl text-[#9F91CC]'>Online</h1>
+            <p className='animate-in fade-in slide-in-from-bottom duration-1200 text-wrap mx-4 mt-4'> It's quiet right now... </p>
           </div>
         </div>
 

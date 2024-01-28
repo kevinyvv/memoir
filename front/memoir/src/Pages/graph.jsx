@@ -206,7 +206,7 @@ const NodeGraph = () => {
   }, [loading, data]); // Run this effect when loading changes
 
   if (loading) {
-    return <div>Loading...</div>; // Display a loading indicator
+    return <div className="animate-in fade-in duration-10000 font-bio mt-4">Loading...</div>; // Display a loading indicator
   }
 
   return (
