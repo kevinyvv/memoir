@@ -42,6 +42,7 @@ module.exports = {
       'title': ["MuseoModerno", 'sans-serif'],
       'slogan': ["Mr Dafoe"],
       'cursive': ["Dancing Script", 'cursive'],
+      'bio': ["Josefin Sans", 'sans-serif'],
     },
   },
 	plugins: [

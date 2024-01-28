@@ -5,11 +5,11 @@ import { NavLink } from 'react-router-dom'
 const Friends = () => { 
 
   return (
-    <div className='animate-in fade-in slide-in-from-bottom duration-1500 h-full w-full flex flex-col items-center my-8'>
-        <h1 className='text-5xl font-bold font-cursive text-[#9F91CC]'> Memoirs </h1>
-        <div className='space-y-8 mt-8'>
+    <div className='h-full w-full flex flex-col items-center my-8'>
+        <h1 className='animate-in fade-in slide-in-from-bottom duration-1000 text-5xl font-bold font-cursive text-[#9F91CC]'> Memoirs </h1>
+        <div className='animate-in fade-in slide-in-from-bottom duration-1500 space-y-8 mt-8'>
             <PostContainer/>
-          <div className='grid grid-cols-8 outline outline-2 w-[36rem] h-64 rounded-lg'>
+          <div className='animate-in fade-in slide-in-from-bottom duration-2000 grid grid-cols-8 outline outline-2 w-[36rem] h-64 rounded-lg'>
           <NavLink to="/profile"> <img className='col-span-1 rounded-full mx-4 my-2' 
         src="https://ih1.redbubble.net/image.4785986194.3997/aps,504x498,medium,transparent-pad,600x600,f8f8f8.jpg"/> </NavLink>
           <div className='col-span-5 mt-4 mx-4'>
