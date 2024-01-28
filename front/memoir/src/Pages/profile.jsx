@@ -49,7 +49,7 @@ const Profile = () => {
 
         <div className='col-span-1 text-center'>
           <h1 className='text-xl font-bold'> Friends </h1>
-          <p className='text-wrap mx-4 mt-4'> You currently have no friends. Go and make some!</p>
+          <p className='text-wrap mx-4 mt-4'> You currently have no friends. Go make some!</p>
         </div>
       </div>
     </div>
