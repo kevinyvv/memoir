@@ -10,7 +10,7 @@ function ForceGraph({
   nodeGroups, // an array of ordinal values representing the node groups
   nodeTitle, // given d in nodes, a title string
   nodeFill = "currentColor", // node stroke fill (if not using a group color encoding)
-  nodeStroke = "#fff", // node stroke color
+  nodeStroke = "#ffffff", // node stroke color
   nodeStrokeWidth = 1.5, // node stroke width, in pixels
   nodeStrokeOpacity = 1, // node stroke opacity
   nodeRadius = 15, // node radius, in pixels
@@ -18,8 +18,8 @@ function ForceGraph({
   linkSource = ({source}) => source, // given d in links, returns a node identifier string
   linkTarget = ({target}) => target, // given d in links, returns a node identifier string
   linkStroke = "#999", // link stroke color
-  linkStrokeOpacity = 0.6, // link stroke opacity
-  linkStrokeWidth = 1.5, // given d in links, returns a stroke width in pixels
+  linkStrokeOpacity = 1, // link stroke opacity
+  linkStrokeWidth = 10, // given d in links, returns a stroke width in pixels
   linkStrokeLinecap = "round", // link stroke linecap
   linkStrength,
   colors = d3.schemeTableau10, // an array of color strings, for the node groups
@@ -174,7 +174,7 @@ const NodeGraph = () => {
   const fetchData = async () => {
     try {
       console.log("Fetching data...");
-      const response = await fetch('http://127.0.0.1:5001/update-graph');
+      const response = await fetch('http://127.0.0.1:5001/update-graph'); 
       const res = await response.json();
       setData(res);
       setLoading(false); // Set loading to false after data is fetched
@@ -196,7 +196,7 @@ const NodeGraph = () => {
       const svg = ForceGraph(data, {
         nodeId: d => d.id,
         nodeGroup: d => d.group,
-        nodeTitle: d => `${d.id}:\n${d.m}`,
+        nodeTitle: d => `${d.user}:\n${d.m}`,
         linkStrokeWidth: l => Math.sqrt(l.value),
         width: 1900,
         height: 800,

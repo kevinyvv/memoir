@@ -16,10 +16,8 @@ const PostModal = ({setShowModal}) => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-        const response = await axios.post(`http://localhost:8000/create/post}`, {
-            content: content,
-        })
-        console.log(response)
+        const response = await axios.post(`http://127.0.0.1:5001/create-post`, {content: content})
+        console.log(response.data)
         //const success = response.status == 201
 
         window.location.reload()

@@ -6,6 +6,7 @@ import os
 import json
 import math
 from dotenv import load_dotenv
+
 load_dotenv()
 COHERE_API_KEY = os.environ.get('COHERE_API_KEY')
 co = cohere.Client(COHERE_API_KEY)
@@ -22,8 +23,12 @@ def cosine_similarity(v1,v2):
 
 def group(posts):
 
+    posts = []
+    
+    content = posts[:int(len(posts)/2)]
+    users = posts[int(len(posts)/2):]
     embeddings = co.embed(
-        texts=posts,
+        texts=content,
         model='embed-english-v3.0',
         input_type='classification',
     ).embeddings
@@ -40,7 +45,7 @@ def group(posts):
         print("Group", i)
         for j in range(len(labels)):
             if labels[j] == i:
-                print(posts[j])
+                print(content[j])
         print()
 
     #take all relations between groups and softmax from each leaving node
@@ -50,7 +55,7 @@ def group(posts):
         for j in range(len(labels)):
             if labels[j] == i:
                 groups[i]["n"] += 1
-                groups[i]["messages"].append(posts[j])
+                groups[i]["messages"].append(content[j])
                 groups[i]["sum"] += np.array(embeddings[j])
 
     for key in groups.keys():
@@ -65,14 +70,14 @@ def group(posts):
 
     graph = {"nodes": [], "links":[]}
     for i in range(len(groups.keys())):
-        graph["nodes"].append({"id":i, "name": groups[i]["messages"], "group": i, "m": "Main Group Node"})
+        graph["nodes"].append({"id":i, "name": groups[i]["messages"], "group": i, "m": "Main Group Node", "user":"Group Post"})
     for i in range(len(group_connections)):
         for j in range(len(group_connections)):
             if group_connections[i][j] == 1:
                 graph["links"].append({"source":i, "target": j, "value": float(distance(groups[i]["average"], groups[j]["average"]))})
 
-    for i in range(len(posts)):
-        graph["nodes"].append({"id": "m"+str(i), "group": int(labels[i]), "m": posts[i]})
+    for i in range(len(content)):
+        graph["nodes"].append({"id": "m"+str(i), "group": int(labels[i]), "m": content[i], "user":users[i]})
         graph["links"].append({"source": "m"+str(i), "target": int(labels[i]), "value": float(distance(embeddings[i], groups[labels[i]]["average"]))})
 
     return graph

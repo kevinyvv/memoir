@@ -39,7 +39,7 @@ def get_posts():
         document['_id'] = str(document['_id'])
     return jsonify(data_list)
 
-@app.route('/create/post', methods=['POST'])
+@app.route('/create-post', methods=['POST'])
 def create_post():
     data = request.get_json()
     posts_collection.insert_one(data)
@@ -53,6 +53,7 @@ def update_graph():
     data_list = list(data)
     for document in data_list:  # Convert ObjectId to string
         document['_id'] = str(document['_id'])
+
     user_list = []
     content_list = []
 
@@ -60,7 +61,7 @@ def update_graph():
         user_list.append(element['user'])
         content_list.append(element['content'])
     
-    groupings = group(content_list)
+    groupings = group(content_list + user_list)
     return jsonify(groupings)
     
 
