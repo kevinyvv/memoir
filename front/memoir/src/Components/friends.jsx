@@ -25,9 +25,13 @@ const Friends = () => {
               <p className='bg-[#ccc5fc] text-sm rounded-full text-white pt-[1px] px-2 w-[120px] h-6'> Playing Outside </p>
             </div>
         </div>
+        
+        
         <img className='col-span-3'/>
       </div>
+      
       </div>
+      
     </div>
   )
 }

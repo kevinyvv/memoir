@@ -92,7 +92,7 @@ def group(posts):
         three_smallest = sorted_elements[1:4]
         for j in three_smallest:
             if distance(embeddings[i], embeddings[j[0]]) != 0:
-                graph["links"].append({"source": "m"+str(i), "target": "m"+str(j[0]), "value": (40/float(distance(embeddings[i], embeddings[j[0]]))**0.5)})
+                graph["links"].append({"source": "m"+str(i), "target": "m"+str(j[0]), "value": (10/float(distance(embeddings[i], embeddings[j[0]]))**0.5)})
     return graph
 
     # with open("sample.json", "w") as outfile: 

@@ -10,16 +10,16 @@ function ForceGraph({
   nodeGroups, // an array of ordinal values representing the node groups
   nodeTitle, // given d in nodes, a title string
   nodeFill = "currentColor", // node stroke fill (if not using a group color encoding)
-  nodeStroke = "#ffffff", // node stroke color
+  nodeStroke = "#A9A9A9", // node stroke color
   nodeStrokeWidth = 1.5, // node stroke width, in pixels
   nodeStrokeOpacity = 1, // node stroke opacity
   nodeRadius = 15, // node radius, in pixels
   nodeStrength,
   linkSource = ({source}) => source, // given d in links, returns a node identifier string
   linkTarget = ({target}) => target, // given d in links, returns a node identifier string
-  linkStroke = "#999", // link stroke color
+  linkStroke = "#D3D3D3", // link stroke color
   linkStrokeOpacity = 1, // link stroke opacity
-  linkStrokeWidth = 10, // given d in links, returns a stroke width in pixels
+  linkStrokeWidth = 7, // given d in links, returns a stroke width in pixels
   linkStrokeLinecap = "round", // link stroke linecap
   linkStrength,
   colors = d3.schemeTableau10, // an array of color strings, for the node groups
