@@ -11,7 +11,7 @@ load_dotenv()
 MONGO_DB=os.environ.get('MONGO_DB')
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, support_credentials=True)
 
 client = MongoClient(MONGO_DB)
 db = client['memoir']
@@ -65,6 +65,28 @@ def update_graph():
     groupings = group(content_list + user_list)
     
     return jsonify(groupings)
+
+@app.route('/update-user', methods=['GET'])
+def update_user():
+    #data will have user, content(string)
+    data = posts_collection.find() 
+    data_list = list(data)
+    for document in data_list:  # Convert ObjectId to string
+        document['_id'] = str(document['_id'])
+
+    user_list = []
+    content_list = []
+
+    for element in data_list:
+        if element['user'] == "kevin" or element['user'] == "Kevin":
+            user_list.append(element['user'])
+            content_list.append(element['content'])
+    print(content_list, user_list)
+    
+    groupings = group(content_list + user_list)
+    
+    return jsonify(groupings)
+    response.headers.add('Access-Control-Allow-Origin', '*') 
     
 
 if __name__ == "__main__":
