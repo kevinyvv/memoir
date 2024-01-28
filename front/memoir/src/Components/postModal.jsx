@@ -30,7 +30,7 @@ const PostModal = ({setShowModal}) => {
 
 
   return (
-    <div className='absolute w-[60svw] h-[60svh] mt-4 bg-white px-10 py-4 rounded-md 
+    <div className='absolute w-[60svw] h-[75svh] mt-28 bg-white px-10 py-4 rounded-md 
     translate -translate-x-1/2 -translate-y-1/2 top-1/3 left-1/2 space-y-4'>
         <button onClick={handleClick} className="float-right hover:font-bold"> ⓧ </button>
         <h2 className='italic text-2xl font-bold'> Create Post </h2>
@@ -38,7 +38,7 @@ const PostModal = ({setShowModal}) => {
         <p className='font-bold text-lg italic'> What are you reminiscing about? </p>
         <form onSubmit={handleSubmit} className=' flex flex-col items-center
         space-y-2 mt-8'>
-            <input className='px-2 rounded-lg text-lg h-[240px] w-[40svw] bg-white outline outline-2'
+            <input className='px-2 pb-52 rounded-lg text-lg h-[240px] w-[40svw] bg-white outline outline-2'
                 type='content'
                 id="content"
                 name="content"

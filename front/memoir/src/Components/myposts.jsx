@@ -5,11 +5,13 @@ import { NavLink } from 'react-router-dom'
 const Myposts = () => {
   return (
     <div className='flex flex-col col-span-3 items-center space-y-8'>
-        <h1 className='font-bold text-2xl mx-4'>
+        <h1 className='animate-in fade-in slide-in-from-bottom duration-1000 font-bold text-2xl mx-4'>
             Posts
         </h1>
+        <div className="animate-in fade-in slide-in-from-bottom duration-1500">
           <PostContainer/>
-          <div className='grid grid-cols-8 outline outline-2 w-[36rem] h-64 rounded-lg'>
+        </div>
+          <div className='animate-in fade-in slide-in-from-bottom duration-2000 grid grid-cols-8 outline outline-2 w-[36rem] h-64 rounded-lg'>
         <NavLink to="/profile"> <img className='col-span-1 rounded-full mx-4 my-2' 
         src="https://imgur.com/AnGiADE.jpg"/> </NavLink>
         <div className='col-span-5 mt-4 mx-4'>

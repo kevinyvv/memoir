@@ -25,16 +25,16 @@ const Profile = () => {
         <div>
           <h1 className='text-white font-bio font-bold mt-10 text-xl'>Kevin Wu</h1>
           <h1 className='text-gray-200 font-bio font-bold text-md'>@kevin</h1>
-          <p className='mt-5 text-white font-bio'>
+          <p className='mt-2 text-white font-bio'>
             {bio}
           </p>
         </div>
-        <NavLink to="/profile"> <img className="absolute mt-5 size-12 rounded-full right-4 hover:scale-105" src="https://imgur.com/AnGiADE.jpg"/></NavLink> 
+        <NavLink to="/profile"> <img className="absolute mt-5 size-12 rounded-full right-4 hover:scale-105" src="https://imgur.com/h74AiV3.jpg"/></NavLink> 
       </div>
       <div className='h-full bg-white grid justify-between align-center grid-cols-5 w-full'>
         
       <div className='col-span-1 mx-4 w-1/2'>
-      <select value={cloud} onChange={(e)=>handleChange(e)} class="select w-full max-w-xs bg-slate-300">
+      <select value={cloud} onChange={(e)=>handleChange(e)} class="animate-in fade-in slide-in-from-bottom duration-1000 select w-full max-w-xs bg-white font-bold text-md">
         <option disabled selected>Display</option>
         <option> My Posts</option>
         <option> My Cloud</option>
@@ -43,13 +43,18 @@ const Profile = () => {
 
         <div className='col-span-3 text-center'>
         {
-          cloud == 'My Cloud' ? <Mycloud/> : <Myposts/>
+          cloud == 'My Cloud' ? 
+          <div> 
+            <h1 className='animate-in fade-in slide-in-from-bottom duration-1000 font-bold text-2xl mx-4'> My Cloud </h1>
+            <Mycloud/> 
+          </div>
+          : <Myposts/>
         }
         </div>
 
         <div className='col-span-1 text-center'>
-          <h1 className='text-xl font-bold'> Friends </h1>
-          <p className='text-wrap mx-4 mt-4'> You currently have no friends. Go make some!</p>
+          <h1 className='text-xl font-bold animate-in fade-in slide-in-from-bottom duration-1000'> Friends </h1>
+          <p className='animate-in fade-in slide-in-from-bottom duration-1200 text-wrap mx-4 mt-4'> You currently have no friends. Go make some!</p>
         </div>
       </div>
     </div>
