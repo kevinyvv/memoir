@@ -87,7 +87,6 @@ def update_user():
     groupings = group(content_list + user_list)
     
     return jsonify(groupings)
-    response.headers.add('Access-Control-Allow-Origin', '*') 
     
 
 if __name__ == "__main__":

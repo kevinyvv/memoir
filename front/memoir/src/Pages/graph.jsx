@@ -1,5 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
-import * as d3 from "d3"
+import * as d3 from "d3";
+import * as PIXI from "pixi.js";
+import { Viewport } from 'pixi-viewport';
 
 function ForceGraph({
   nodes, // an iterable of node objects (typically [{id}, …])
@@ -17,9 +19,9 @@ function ForceGraph({
   nodeStrength,
   linkSource = ({source}) => source, // given d in links, returns a node identifier string
   linkTarget = ({target}) => target, // given d in links, returns a node identifier string
-  linkStroke = "#999", // link stroke color
+  linkStroke = "#4A505A", // link stroke color
   linkStrokeOpacity = 1, // link stroke opacity
-  linkStrokeWidth = 10, // given d in links, returns a stroke width in pixels
+  linkStrokeWidth = 2, // given d in links, returns a stroke width in pixels
   linkStrokeLinecap = "round", // link stroke linecap
   linkStrength,
   colors = d3.schemeTableau10, // an array of color strings, for the node groups
@@ -64,7 +66,7 @@ function ForceGraph({
       .attr("height", height)
       .attr("viewBox", [-width / 2, -height / 2, width, height])
       .attr("style", "max-width: 100%; height: auto; height: intrinsic;");
-
+    
   const link = svg.append("g")
       .attr("stroke", typeof linkStroke !== "function" ? linkStroke : null)
       .attr("stroke-opacity", linkStrokeOpacity)
@@ -73,6 +75,7 @@ function ForceGraph({
     .selectAll("line")
     .data(links)
     .join("line");
+
   const node = svg.append("g")
       .attr("fill", nodeFill)
       .attr("stroke", nodeStroke)
@@ -96,6 +99,7 @@ function ForceGraph({
   function intern(value) {
     return value !== null && typeof value === "object" ? value.valueOf() : value;
   }
+
 
   function ticked() {
     link
@@ -135,7 +139,6 @@ function ForceGraph({
     .duration(200)
     .attr('r', nodeRadius);
   }
-
 
   function drag(simulation) {    
     function dragstarted(event) {

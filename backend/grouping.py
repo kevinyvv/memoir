@@ -37,16 +37,10 @@ def group(posts):
 
     for i in range(len(embeddings)):
         for j in range(len(embeddings)):
-            m[i][j] = (embeddings[i], embeddings[j])
+            m[i][j] = distance(embeddings[i], embeddings[j])
 
     db = Birch(n_clusters=int(math.sqrt(len(embeddings)))).fit(embeddings)
     labels = db.labels_
-    for i in range(max(labels)+1):
-        print("Group", i)
-        for j in range(len(labels)):
-            if labels[j] == i:
-                print(content[j])
-        print()
 
     #take all relations between groups and softmax from each leaving node
     groups = {}
@@ -83,12 +77,22 @@ def group(posts):
     for i in range(len(group_connections)):
         for j in range(len(group_connections)):
             if group_connections[i][j] == 1:
-                graph["links"].append({"source":i, "target": j, "value": 0.10*float(distance(groups[i]["average"], groups[j]["average"]))})
+                graph["links"].append({"source":i, "target": j, "value": 2*float(distance(groups[i]["average"], groups[j]["average"]))})
 
     for i in range(len(content)):
         graph["nodes"].append({"id": "m"+str(i), "group": int(labels[i]), "m": content[i], "user":users[i]})
-        graph["links"].append({"source": "m"+str(i), "target": int(labels[i]), "value": 0.10*float(distance(embeddings[i], groups[labels[i]]["average"]))})
+        graph["links"].append({"source": "m"+str(i), "target": int(labels[i]), "value": 2*float(distance(embeddings[i], groups[labels[i]]["average"]))})
 
+    # starting attempt at new graph from here:
+    graph = {"nodes": [], "links": []}
+    for i in range(len(content)):
+        graph["nodes"].append({"id": "m"+str(i), "group": int(labels[i]), "m": content[i], "user":users[i]})
+        sorted_elements = sorted(enumerate(m[i]), key=lambda x: x[1])
+
+        three_smallest = sorted_elements[1:4]
+        for j in three_smallest:
+            if distance(embeddings[i], embeddings[j[0]]) != 0:
+                graph["links"].append({"source": "m"+str(i), "target": "m"+str(j[0]), "value": (40/float(distance(embeddings[i], embeddings[j[0]]))**0.5)})
     return graph
 
     # with open("sample.json", "w") as outfile: 
