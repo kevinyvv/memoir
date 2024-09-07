@@ -8,6 +8,8 @@ The genesis of Memoir stemmed from a shared longing to reconnect with the simple
 - be it the excitement of trading Pokémon cards or the freedom of playground adventures. Our goal was to create a digital space where these memories could be not just
 - revisited, but shared and celebrated as collective human experiences.
 
+Check our demo [here](https://devpost.com/software/memoir-3l4hya)
+
 ## 🔨 Installation
 
 Requirements :
